@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@catppuccin/palette": "^1.7.1",
     "@fontsource/montserrat": "^5.1.1",
     "@fontsource/noto-color-emoji": "^5.1.1",
     "astro": "^5.3.0",

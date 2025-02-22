@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "@catppuccin/palette/scss/mocha.scss";
+@use "@catppuccin/palette/scss/latte.scss";
+
+$selected-theme: null;
+
+$themes: (
+  dark: (
+    background: mocha.$base,
+    foreground: mocha.$text,
+  ),
+  light: (
+    background: latte.$base,
+    foreground: latte.$text,
+  ),
+);
+
+@mixin css {
+  @each $name, $theme in $themes {
+    $selected-theme: $theme !global;
+    $selector: "#{&}";
+
+    @media (prefers-color-scheme: #{$name}) {
+      & {
+        @content;
+      }
+    }
+
+    @if $selector == "body" {
+      &.#{$name} {
+        @content;
+      }
+    } @else {
+      body.#{$name} & {
+        @content;
+      }
+    }
+
+    $selected-theme: null !global;
+  }
+}
+
+@function value($name) {
+  @if $selected-theme == null {
+    @error "The `theme.value` function can only be used in a `theme.css` block.";
+  }
+
+  @return map.get($selected-theme, $name);
+}

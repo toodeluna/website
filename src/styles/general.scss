@@ -1,5 +1,11 @@
 @use "./fonts";
+@use "./theme";
 
 body {
   font-family: fonts.$primary;
+
+  @include theme.css {
+    background-color: theme.value("background");
+    color: theme.value("foreground");
+  }
 }
