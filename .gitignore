@@ -1,0 +1,9 @@
+# Dependencies
+node_modules/
+
+# Output files
+.astro/
+dist/
+
+# System files
+.DS_Store
