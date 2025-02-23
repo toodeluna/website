@@ -1,0 +1,14 @@
+---
+import icons from "@/icons";
+
+type Props = {
+  name: keyof typeof icons;
+  size?: string;
+};
+
+const { name, size = "1rem" } = Astro.props;
+---
+
+<div aria-hidden="true" style={{ width: size }}>
+  <Fragment set:html={icons[name].html} />
+</div>
